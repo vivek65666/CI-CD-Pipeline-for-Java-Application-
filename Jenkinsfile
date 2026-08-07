@@ -25,11 +25,6 @@ pipeline {
             steps {
                 bat 'mvn clean test'
             }
-            post {
-                success {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
         }
         
         stage('3. Code Quality Analysis') {
