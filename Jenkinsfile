@@ -38,15 +38,14 @@ pipeline {
             }
         }
         
-      stage('4. Publish Artifact to Nexus') {
-            steps {
-                script {
-                    writeFile file: 'settings.xml', text: """<settings>
-  <servers>
+     stage('4. Publish Artifact to Nexus') {
+         steps {
+             script {
+                 writeFile file: 'settings.xml', text: """<settings>
     <server>
       <id>nexus-credentials-id</id>
       <username>admin</username>
-      <password>admin123</password>
+      <password>b91b081d-4ffb-4edf-874d-ac2ac05c2d7f</password>
     </server>
   </servers>
 </settings>"""
