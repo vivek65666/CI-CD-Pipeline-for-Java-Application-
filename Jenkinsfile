@@ -55,17 +55,16 @@ pipeline {
             }
         }
         
-        stage('5. Build & Push Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDS}") {
-                        def customImage = docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
-                        customImage.push()
-                        customImage.push('latest')
-                    }
-                }
+      stage('5. Build & Push Docker Image') {
+    steps {
+        script {
+            withDockerRegistry(credentialsId: 'docker-hub-credentials-id', toolName: 'default') {
+                bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" build -t vivek65666/spring-boot-app:latest .'
+                bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" push vivek65666/spring-boot-app:latest'
             }
         }
+    }
+}
         
         stage('6. Deploy to Kubernetes') {
             steps {
