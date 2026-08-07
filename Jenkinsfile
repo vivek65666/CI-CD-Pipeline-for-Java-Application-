@@ -66,14 +66,14 @@ pipeline {
 }
         
         stage('6. Deploy to Kubernetes') {
-            steps {
-                script {
-                    bat "powershell -Command \"(Get-Content k8s/deployment.yaml) -replace 'IMAGE_TAG', '${IMAGE_TAG}' | Set-Content k8s/deployment.yaml\""
-                    kubernetesDeploy(configs: 'k8s/deployment.yaml', kubeconfigId: 'k8s-kubeconfig-id')
-                }
-            }
+    steps {
+        script {
+            // Replace placeholder IMAGE_TAG with the actual build number
+            bat "powershell -Command \"(Get-Content k8s/deployment.yaml) -replace 'IMAGE_TAG', '${IMAGE_TAG}' | Set-Content k8s/deployment.yaml\""
+            bat 'kubectl apply -f k8s/deployment.yaml'
         }
     }
+}
     
     post {
         always {
