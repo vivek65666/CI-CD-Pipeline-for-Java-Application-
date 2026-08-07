@@ -67,11 +67,10 @@ pipeline {
             steps {
                 script {
                     bat "powershell -Command \"(Get-Content k8s/deployment.yaml) -replace 'IMAGE_TAG', '${IMAGE_TAG}' | Set-Content k8s/deployment.yaml\""
-                    bat 'kubectl apply -f k8s/deployment.yaml'
+                    bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s/deployment.yaml'
                 }
             }
         }
-    }
     
     post {
         always {
