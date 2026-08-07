@@ -41,7 +41,7 @@ pipeline {
         stage('4. Publish Artifact to Nexus') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-credentials-id', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    bat "mvn deploy -DskipTests"
+                    bat "mvn deploy -DskipTests -Dnexus.username=%NEXUS_USER% -Dnexus.password=%NEXUS_PASSWORD%"
                 }
             }
         }
