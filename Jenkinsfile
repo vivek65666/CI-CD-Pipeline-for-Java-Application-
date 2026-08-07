@@ -63,7 +63,7 @@ pipeline {
             }
         }
         
-       stage('6. Deploy to Kubernetes') {
+        stage('6. Deploy to Kubernetes') {
             steps {
                 script {
                     bat "powershell -Command \"(Get-Content k8s/deployment.yaml) -replace 'IMAGE_TAG', '${IMAGE_TAG}' | Set-Content k8s/deployment.yaml\""
@@ -71,6 +71,7 @@ pipeline {
                 }
             }
         }
+    }
     
     post {
         always {
