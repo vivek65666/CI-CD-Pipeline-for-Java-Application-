@@ -39,9 +39,10 @@ pipeline {
         }
         
      stage('4. Publish Artifact to Nexus') {
-         steps {
-             script {
-                 writeFile file: 'settings.xml', text: """<settings>
+          steps {
+              script {
+                  writeFile file: 'settings.xml', text: """<settings>
+  <servers>
     <server>
       <id>nexus-credentials-id</id>
       <username>admin</username>
@@ -49,10 +50,10 @@ pipeline {
     </server>
   </servers>
 </settings>"""
-                    bat 'mvn deploy -DskipTests --settings settings.xml'
-                }
-            }
-        }
+                  bat 'mvn deploy -DskipTests --settings settings.xml'
+              }
+          }
+      }
         stage('5. Build & Push Docker Image') {
             steps {
                 script {
