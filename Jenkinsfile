@@ -46,7 +46,7 @@ pipeline {
     <server>
       <id>nexus-credentials-id</id>
       <username>admin</username>
-      <password>YOUR_REAL_NEXUS_ADMIN_PASSWORD</password>
+      <password>admin123</password>
     </server>
   </servers>
 </settings>"""
