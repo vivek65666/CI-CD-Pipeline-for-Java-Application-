@@ -36,6 +36,20 @@
         </dependency>
     </dependencies>
 
+    <!-- Distribution Management for Nexus -->
+    <distributionManagement>
+        <repository>
+            <id>nexus-credentials-id</id>
+            <name>Nexus Release Repository</name>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-credentials-id</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <!-- Spring Boot Maven Plugin to package as an executable jar -->
