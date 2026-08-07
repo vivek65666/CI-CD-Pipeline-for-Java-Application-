@@ -15,7 +15,7 @@ public class Application {
 
     @GetMapping("/")
     public String home() {
-        value = "Hello from automated CI/CD Pipeline!";
+        String value = "Hello from automated CI/CD Pipeline!";
         return value;
     }
 }
