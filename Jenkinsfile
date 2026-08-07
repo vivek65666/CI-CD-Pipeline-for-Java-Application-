@@ -8,8 +8,8 @@ pipeline {
     
     environment {
         SCANNER_HOME = tool 'SonarQubeScanner'
-        DOCKER_CREDS = 'docker-hub-credentials-id' // Replace with your Jenkins credential ID
-        NEXUS_CREDS = 'nexus-credentials-id'     // Replace with your Jenkins credential ID
+        DOCKER_CREDS = 'docker-hub-credentials-id'
+        NEXUS_CREDS = 'nexus-credentials-id'
         IMAGE_NAME = 'vivek65666/spring-boot-app'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
     }
@@ -23,7 +23,7 @@ pipeline {
         
         stage('2. Build & Unit Test') {
             steps {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
             post {
                 success {
@@ -35,7 +35,7 @@ pipeline {
         stage('3. Code Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
-                    sh "${SCANNER_HOME}/bin/sonar-scanner \
+                    bat "${SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.projectKey=spring-boot-app \
                     -Dsonar.sources=src/main/java \
                     -Dsonar.tests=src/test/java \
@@ -47,7 +47,7 @@ pipeline {
         stage('4. Publish Artifact to Nexus') {
             steps {
                 withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDS}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    sh 'mvn deploy -DskipTests'
+                    bat 'mvn deploy -DskipTests'
                 }
             }
         }
@@ -67,7 +67,7 @@ pipeline {
         stage('6. Deploy to Kubernetes') {
             steps {
                 script {
-                    sh "sed -i 's|IMAGE_TAG|${IMAGE_TAG}|g' k8s/deployment.yaml"
+                    bat "powershell -Command \"(Get-Content k8s/deployment.yaml) -replace 'IMAGE_TAG', '${IMAGE_TAG}' | Set-Content k8s/deployment.yaml\""
                     kubernetesDeploy(configs: 'k8s/deployment.yaml', kubeconfigId: 'k8s-kubeconfig-id')
                 }
             }
