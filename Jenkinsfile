@@ -41,11 +41,23 @@ pipeline {
        stage('4. Publish Artifact to Nexus') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-credentials-id', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    bat "mvn deploy -DskipTests -DaltDeploymentRepository=nexus-credentials-id::default::http://%NEXUS_USER%:%NEXUS_PASSWORD%@localhost:8081/repository/maven-releases/"
+                    script {
+                        // Write a temporary Maven settings.xml with the injected credentials
+                        writeFile file: 'settings.xml', text: """<settings>
+  <servers>
+    <server>
+      <id>nexus-credentials-id</id>
+      <username>\${NEXUS_USER}</username>
+      <password>\${NEXUS_PASSWORD}</password>
+    </server>
+  </servers>
+</settings>"""
+                        // Run maven deploy using the custom settings file
+                        bat 'mvn deploy -DskipTests --settings settings.xml'
+                    }
                 }
             }
         }
-        
         stage('5. Build & Push Docker Image') {
             steps {
                 script {
