@@ -27,13 +27,12 @@ pipeline {
             }
         }
         
-        stage('3. Code Quality Analysis') {
+      stage('3. Code Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
                     bat "${SCANNER_HOME}/bin/sonar-scanner \
                     -Dsonar.projectKey=spring-boot-app \
                     -Dsonar.sources=src/main/java \
-                    -Dsonar.tests=src/test/java \
                     -Dsonar.java.binaries=target/classes"
                 }
             }
