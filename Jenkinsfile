@@ -56,7 +56,7 @@ pipeline {
         stage('5. Build & Push Docker Image') {
             steps {
                 script {
-                    bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u vivek65666 -p b91b081d-4ffb-4edf-874d-ac2ac05c2d7f'
+                    bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u vivek65666 -p dckr_pat_wNt9-bxzzrCPNuvjvj_XfdZ3GFk'
                     bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t vivek65666/spring-boot-app:latest .'
                     bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" push vivek65666/spring-boot-app:latest'
                 }
