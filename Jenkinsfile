@@ -38,23 +38,19 @@ pipeline {
             }
         }
         
-       stage('4. Publish Artifact to Nexus') {
+      stage('4. Publish Artifact to Nexus') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus-credentials-id', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    script {
-                        // Write a temporary Maven settings.xml with the injected credentials
-                        writeFile file: 'settings.xml', text: """<settings>
+                script {
+                    writeFile file: 'settings.xml', text: """<settings>
   <servers>
     <server>
       <id>nexus-credentials-id</id>
-      <username>\${NEXUS_USER}</username>
-      <password>\${NEXUS_PASSWORD}</password>
+      <username>admin</username>
+      <password>YOUR_REAL_NEXUS_ADMIN_PASSWORD</password>
     </server>
   </servers>
 </settings>"""
-                        // Run maven deploy using the custom settings file
-                        bat 'mvn deploy -DskipTests --settings settings.xml'
-                    }
+                    bat 'mvn deploy -DskipTests --settings settings.xml'
                 }
             }
         }
