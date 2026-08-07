@@ -55,12 +55,12 @@ pipeline {
             }
         }
         
-     stage('5. Build & Push Docker Image') {
+    stage('5. Build & Push Docker Image') {
     steps {
         script {
-            bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" login -u vivek65666 -p b91b081d-4ffb-4edf-874d-ac2ac05c2d7f'
-            bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" build -t vivek65666/spring-boot-app:latest .'
-            bat '"C:\\Program Files *//Docker\\Docker\\resources\\bin\\docker.exe" push vivek65666/spring-boot-app:latest'
+            bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" login -u vivek65666 -p b91b081d-4ffb-4edf-874d-ac2ac05c2d7f'
+            bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t vivek65666/spring-boot-app:latest .'
+            bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" push vivek65666/spring-boot-app:latest'
         }
     }
 }
