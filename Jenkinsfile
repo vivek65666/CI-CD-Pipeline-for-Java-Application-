@@ -41,7 +41,7 @@ pipeline {
        stage('4. Publish Artifact to Nexus') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-credentials-id', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    bat "mvn deploy -DskipTests"
+                    bat "mvn deploy -DskipTests -DaltDeploymentRepository=nexus-credentials-id::default::http://%NEXUS_USER%:%NEXUS_PASSWORD%@localhost:8081/repository/maven-releases/"
                 }
             }
         }
