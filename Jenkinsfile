@@ -27,7 +27,7 @@ pipeline {
             }
         }
         
-      stage('3. Code Quality Analysis') {
+        stage('3. Code Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
                     bat "${SCANNER_HOME}/bin/sonar-scanner \
@@ -40,8 +40,8 @@ pipeline {
         
         stage('4. Publish Artifact to Nexus') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDS}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    bat 'mvn deploy -DskipTests'
+                withCredentials([usernamePassword(credentialsId: 'nexus-credentials-id', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWORD')]) {
+                    bat "mvn deploy -DskipTests"
                 }
             }
         }
