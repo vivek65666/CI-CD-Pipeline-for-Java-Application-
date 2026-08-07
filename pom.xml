@@ -11,9 +11,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-   <groupId>com.example</groupId>
-<artifactId>spring-boot-app</artifactId>
-<version>1.0.1</version>
+    <groupId>com.example</groupId>
+    <artifactId>spring-boot-app</artifactId>
+    <version>1.0.1</version>
     <name>spring-boot-app</name>
     <description>Demo project for Spring Boot CI/CD Pipeline</description>
 
