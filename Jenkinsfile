@@ -52,12 +52,11 @@ pipeline {
             }
         }
         
-        stage('6. Deploy to Kubernetes') {
+       stage('6. Deploy to Kubernetes') {
             steps {
                 script {
                     bat "powershell -Command \"(Get-Content k8s/deployment.yaml) -replace 'IMAGE_TAG', '${IMAGE_TAG}' | Set-Content k8s/deployment.yaml\""
-                    bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" config use-context minikube'
-                    bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s/deployment.yaml --validate=false'
+                    bat '"C:\\Users\\Vivek\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" --kubeconfig "C:\\Users\\Vivek\\.kube\\config" apply -f k8s/deployment.yaml --validate=false'
                 }
             }
         }
