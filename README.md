@@ -32,23 +32,23 @@ The pipeline executes the following **6 sequential stages** on every code push:
 
 ### 1. Jenkins Successful Build (`Finished: SUCCESS`)
 The automated pipeline running through Jenkins, successfully clearing all stages including workspace cleanup and Kubernetes deployment.
-![Jenkins Success](screenshots/jenkins-success.png)
+![Jenkins Success](Screenshots/jenkins-success.png)
 
 ### 2. SonarQube Code Quality Analysis
 Static code analysis profile configured with best-practice quality gates (`Sonar way`).
-![SonarQube Dashboard](screenshots/sonarqube-dashboard.png)
+![SonarQube Dashboard](Screenshots/sonarqube-dashboard.png)
 
 ### 3. Sonatype Nexus Repository Dashboard
 Artifact management tracking deployed components and repository health.
-![Nexus Dashboard](screenshots/nexus-dashboard.png)
+![Nexus Dashboard](Screenshots/nexus-dashboard.png)
 
 ### 4. Docker Hub Repository Tags
 Public container registry repository showing the successfully pushed image tags.
-![Docker Hub Tags](screenshots/dockerhub-tags.png)
+![Docker Hub Tags](Screenshots/dockerhub-tags.png)
 
 ### 5. Kubernetes Pods & Services
 Minikube terminal output confirming the deployment and active services running inside the cluster.
-![Kubernetes Output](screenshots/k8s-pods.png)
+![Kubernetes Output](Screenshots/k8s-pods.png)
 
 ---
 
@@ -58,7 +58,7 @@ Minikube terminal output confirming the deployment and active services running i
 ├── .vscode/               # Workspace configurations
 ├── k8s/                   # Kubernetes deployment and service manifests
 │   └── deployment.yaml
-├── screenshots/           # Pipeline execution visual proof
+├── Screenshots/           # Pipeline execution visual proof
 ├── src/                   # Spring Boot application source code
 ├── Dockerfile             # Container configuration for the Spring Boot app
 ├── Jenkinsfile            # Jenkins Declarative Pipeline definition
