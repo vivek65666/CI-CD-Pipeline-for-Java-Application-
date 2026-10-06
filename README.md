@@ -50,6 +50,12 @@ Public container registry repository showing the successfully pushed image tags.
 Minikube terminal output confirming the deployment and active services running inside the cluster.
 ![Kubernetes Output](Screenshots/k8s-pods.png)
 
+### 📐 AWS CI/CD Architecture
+
+![AWS CI/CD Pipeline Architecture](Screenshots/java-cicd-aws-architecture.png)
+
+> AWS-based CI/CD architecture illustrating the flow from GitHub and Jenkins through container image management and Kubernetes deployment, with monitoring and notifications.
+
 ---
 
 ## 📂 Project Structure
